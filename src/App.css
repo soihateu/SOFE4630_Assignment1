@@ -23,3 +23,28 @@
 .tabs {
   width: 100%;
 }
+
+#extrafont {
+  font-size: 12px;
+  margin-top: 75px;
+}
+
+#inputContainer {
+  font-size: 15px;
+}
+
+#game-text {
+  color: white;
+}
+
+#gameButton {
+  color: white;
+  background-color: white;
+}
+#gameExplanation {
+  padding-bottom: 20px;
+}
+
+#score {
+  padding-top: 30px;
+}

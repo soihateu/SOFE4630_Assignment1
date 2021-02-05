@@ -2,9 +2,9 @@ import React, { Children, useState } from "react";
 import "../App.css";
 import { Tabs, Tab, AppBar } from "@material-ui/core";
 import { Component, Fragment } from "react";
-import Box from "@material-ui/core/Box";
-import Calculator from "./Calculator";
+import Database from "./Database";
 import Convert from "./Convert";
+import Random from "./Random";
 
 const Nav = () => {
   const [value, setValue] = useState(0);
@@ -16,19 +16,17 @@ const Nav = () => {
     <Fragment>
       <AppBar position="static">
         <Tabs value={value} onChange={handleChange} centered>
-          <Tab label="Item One" />
-          <Tab label="Item Two" />
-          <Tab label="Item Three" />
+          <Tab label="About" />
+          <Tab label="Hide Game" />
+          <Tab label="Random Number" />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
-        <Calculator />
-      </TabPanel>
+      <TabPanel value={value} index={0}></TabPanel>
       <TabPanel value={value} index={1}>
         <Convert />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item number 3
+        <Random />
       </TabPanel>
     </Fragment>
   );
