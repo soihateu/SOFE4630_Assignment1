@@ -1,14 +1,36 @@
-import React, { useEffect, useState } from "react";
+import { React, useEffect, useState } from "react";
 import "../App.css";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import Database from "./Database";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
 const Convert = () => {
-  const [seconds, setSeconds] = useState(5);
+  const [seconds, setSeconds] = useState(10);
   const [isRunning, setIsRunning] = useState(false);
   const [score, setScore] = useState(0);
   const [blackBox, setBlackBox] = useState(0);
+  const [open, setOpen] = useState(false);
+
+  /*********Dialog/alert popup when saving************/
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleCloseYes = () => {
+    setOpen(false);
+    // Setup database
+  };
+
+  /*******Handles user clicks. Randomly selects a new black tile******/
 
   const clickHandler = () => {
     if (isRunning === false) {
@@ -24,15 +46,24 @@ const Convert = () => {
     setScore(score + 1);
   };
 
+  /********Handles reset button. When pressed all
+   *********game states will be reset***********/
+
   const restart = () => {
     setScore(0);
-    setSeconds(5);
+    setSeconds(10);
   };
+
+  /********Handles Save Score button. When pressed, will prompt user******/
 
   const saveScore = () => {
-    <Database score={score} />;
+    if (!isRunning) {
+      handleClickOpen();
+    }
+    //<Database score={score} />;
   };
 
+  /****Works on the timer and checks for end game ***/
   useEffect(() => {
     if (seconds === 0) {
       setIsRunning(false);
@@ -80,6 +111,28 @@ const Convert = () => {
           )}
         </Grid>
       </div>
+
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Save Score?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Would you like to save your score?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            No
+          </Button>
+          <Button onClick={handleCloseYes} color="primary" autoFocus>
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       <div id="score">Score: {score}</div>
       <div>Time: {seconds} </div>

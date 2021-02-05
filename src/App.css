@@ -48,3 +48,12 @@
 #score {
   padding-top: 30px;
 }
+
+#aboutText {
+  font-size: 35px;
+  padding: 25px 0px 50px;
+}
+
+#aboutDesc {
+  font-size: 16px;
+}

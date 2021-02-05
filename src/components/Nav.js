@@ -21,7 +21,15 @@ const Nav = () => {
           <Tab label="Random Number" />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}></TabPanel>
+      <TabPanel value={value} index={0}>
+        <div id="aboutText">
+          Welcome to my application! <br /> <br />
+          <div id="aboutDesc">
+            Try and get a high score in the Tile Game or generate a random
+            number to test your luck!
+          </div>
+        </div>
+      </TabPanel>
       <TabPanel value={value} index={1}>
         <Convert />
       </TabPanel>
